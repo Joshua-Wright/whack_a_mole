@@ -12,6 +12,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fpermissive")
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lginac -lcln") # for ginac
 #set(SOURCE_FILES main.cpp)
 
+configure_file(mole.png mole.png COPYONLY)
+configure_file(bg.png bg.png COPYONLY)
 
 set(SOURCE_FILES main.cpp square_matrix.h game.cpp game.h mole_button.cpp mole_button.h)
 add_executable(whack_a_mole ${SOURCE_FILES})

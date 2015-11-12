@@ -35,7 +35,7 @@ public:
     }
 
     const T *begin() const { // first element
-        return (T *) data;
+        return data;
     }
 
     const T *end() const { // past the end pointer
@@ -49,26 +49,12 @@ public:
         return data[x * _size + y];
     }
 
-//    const T &operator()(unsigned x, unsigned y) const {
-//        if (x >= _size || y >= _size) {
-//            throw std::runtime_error("out of range");
-//        }
-//        return data[x * _size + y];
-//    }
-
     T &operator()(unsigned z) {
         if (z >= _size * _size) {
             throw std::runtime_error("out of range");
         }
         return data[z];
     }
-
-//    const T &operator()(unsigned z) const {
-//        if (z >= _size * _size) {
-//            throw std::runtime_error("out of range");
-//        }
-//        return data[z];
-//    }
 
 };
 

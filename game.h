@@ -7,8 +7,11 @@
 
 #include <iostream>
 #include <random>
+#include <FL/Fl_Box.H>
+#include <FL/Fl_Image.H>
 #include "mole_button.h"
 #include "square_matrix.h"
+#include <FL/Fl_PNG_Image.H>
 
 using std::cout;
 using std::endl;
@@ -18,32 +21,36 @@ class game {
     int statusbar_size;
     square_matrix<mole_button *> board;
     mole_button *current_mole;
+    Fl_Image *image_1;
+    Fl_Image *image_2;
 
     std::random_device rd;
     std::mt19937_64 gen;
     std::uniform_int_distribution<> dis;
 
+    Fl_Box *statusbar_box;
+    char statusbar_buffer[128];
+    int hits, misses;
+
     void initialize_buttons();
-
-    void reset_timer();
-
+    
     friend void button_callback(Fl_Widget *w, void *b);
 
-    void set_random_mole();
+    void set_random_mole(mole_button *clicked);
+
+    void initialize_statusbar();
+
+    void redraw_statusbar();
+
+    void increment_hits();
+
+    void increment_misses();
+
 
 public:
 
-    game(unsigned grid_size, unsigned btn_size, unsigned sbar_size) : board(grid_size), button_size(btn_size),
-                                                                      current_mole(nullptr),
-                                                                      statusbar_size(sbar_size), gen(rd()),
-                                                                      dis(0, board.n_elements()-1) {
-        initialize_buttons();
-//        cout << "test 1234 " << board.n_elements() << endl;
-//        cout << board(1,1)->get_has_mole() << " ";
-//        board(1,1)->set_has_mole(true);
-//        cout << board(1,1)->get_has_mole() << endl;
-
-    }
+    game(unsigned grid_size, unsigned btn_size, unsigned sbar_size,
+         Fl_Image *img1, Fl_Image *img2);
 };
 
 
