@@ -7,7 +7,6 @@
 
 void mole_button::set_has_mole(bool g) {
     has_mole = g;
-    /* TODO: use images instead of text labels */
     if (g) {
         image(image_1);
     } else {
